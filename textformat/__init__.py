@@ -1,1 +1,1 @@
-from textformat.core import TextFormat
+from textformat.core import *
