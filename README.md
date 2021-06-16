@@ -34,6 +34,9 @@ t.fEmoji('Some examples of emojis are 😃, 🧘🏻‍♂️, 🌍, 🍞, 🚗,
 t.fTag('ejemplo de #pruebaTag')
 # return: ejemplo de prueba tag
 
+t.fFormat('Eejemplo 123de formato {ñ45', 'a-z')
+# return: ejemplo de formato
+
 # t.fTweet('tweet') --> Sin # o @ al inicio
 # t.format('tweet') --> Todas las funciones anteriores
 ```
