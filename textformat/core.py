@@ -60,3 +60,9 @@ class TextFormat ():
     def fUrl(self, text):
         t = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text)
         return t
+
+    def fFormat(self, text, valid):
+        t = re.sub(f'[^{valid}]+', ' ', text)
+
+        return t
+
