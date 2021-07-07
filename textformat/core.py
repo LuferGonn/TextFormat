@@ -48,7 +48,7 @@ class TextFormat ():
         '''Clean up a text string in a tweet'''
 
         t = re.sub(r'["\']', '', text)
-        t = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', t)
+        t = self.fUrl(t)
         t = t.replace('\n', ' ')
         t = t.split(' ')
         
