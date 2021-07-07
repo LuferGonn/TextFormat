@@ -2,10 +2,14 @@ import re
 import emoji
 
 class TextFormat ():
+    '''Class that cleans/formats a tweet'''
+
     def __init__(self):
         pass
     
     def format(self, text):
+        '''Clean a tweet'''
+
         t = self.fEmoji(text)
         t = self.fReplace(t)
         t = self.fTweet(t)
@@ -14,19 +18,25 @@ class TextFormat ():
         return t
 
     def fTag(self, text):
-        pascal = re.compile(r"[A-Z]\d*(?:[A-Z\d]*(?=[A-Z]|$)|[a-z])")
-        return pascal.sub(lambda m: (" " if m.start() else "") + m.group().lower(), text)
+        '''Separate tags into words'''
+
+        pascal = re.compile(r'[A-Z]\d*(?:[A-Z\d]*(?=[A-Z]|$)|[a-z])')
+        return pascal.sub(lambda m: (' ' if m.start() else '') + m.group().lower(), text)
 
     def fEmoji(self, text):
+        '''Remove emojis from a text string'''
+
         return emoji.get_emoji_regexp().sub(r'', text)
 
     def fReplace(self, text):
+        '''Replace accented letters in a text string'''
+
         replacements = (
-            ("á", "a"),
-            ("é", "e"),
-            ("í", "i"),
-            ("ó", "o"),
-            ("ú", "u"),
+            ('á', 'a'),
+            ('é', 'e'),
+            ('í', 'i'),
+            ('ó', 'o'),
+            ('ú', 'u'),
         )
         
         for a, b in replacements:
@@ -35,6 +45,8 @@ class TextFormat ():
         return text
 
     def fTweet(self, text):
+        '''Clean up a text string in a tweet'''
+
         t = re.sub(r'["\']', '', text)
         t = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', t)
         t = t.replace('\n', ' ')
@@ -58,10 +70,15 @@ class TextFormat ():
         return t
     
     def fUrl(self, text):
+        '''Remove URLS in a text string'''
+
         t = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text)
+        
         return t
 
     def fFormat(self, text, valid):
+        '''Remove invalid characters in a text string'''
+
         t = re.sub(f'[^{valid}]+', ' ', text)
 
         return t
